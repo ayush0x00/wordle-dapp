@@ -8,7 +8,11 @@ A smart contract deployed on devnet stores the solution, verifies guesses, and t
 
 ```
 0x0fc6f90cffc13c8eb5312cfe1ed45f716a59cdfe524deef655bc1fe94408a2d8
+
 ```
+
+Txn hash: [0x1888996cbd91bc612c8bed21cd3d18e894ac61b8a422f773d778f615c642c35d](https://explorer.aptoslabs.com/txn/4733544?network=devnet)
+
 
 The front-end App displays data from the latest contract state to show the number of guesses, reveal the solution, and indicate letter correctness.
 
@@ -22,6 +26,9 @@ yarn start
 1. Open http://localhost:3000 to view the app.
 2. Ensure the Petra browser extension is installed to inject the Aptos API and allow wallet connectivity.
 3. Create or import an Aptos devnet account in Petra to play.
+
+### Move contracts
+The move contracts are present in the [my-move](./my-move/) directory. Make sure to replace the path of AptosFramework in the [Move.toml](./my-move/Move.toml) file with the path of the [aptos-framework](https://github.com/aptos-labs/aptos-core.git) repo. We tried importing the repo directly from github but it was causing some conflicts so we downloaded it locally for compiling, testing and publishing the contract.
 
 ### Technical Implementation
 The app is bootstrapped with Create React App and has main components for:
