@@ -1,46 +1,59 @@
-# Getting Started with Create React App
+# Aptos Wordle Game
+This project is a Wordle clone built to run on the Aptos blockchain. It allows playing the original word guessing game while recording every key press on-chain for verification.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+The core game logic and React components provide the same Wordle flow - guessing a 5 letter word over 6 tries. To adapt it for blockchain, the Aptos client and Petra wallet are integrated to connect to devnet and sign transactions.
 
-## Available Scripts
+A smart contract deployed on devnet stores the solution, verifies guesses, and tracks player actions. By submitting key press transactions, the guess process is recorded immutably. The contract address is:
 
-In the project directory, you can run:
+```
+0x0fc6f90cffc13c8eb5312cfe1ed45f716a59cdfe524deef655bc1fe94408a2d8
+```
 
-### `yarn start`
+The front-end App displays data from the latest contract state to show the number of guesses, reveal the solution, and indicate letter correctness.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation & Setup
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### To run locally:
+```
+yarn install
+yarn start
+```
+1. Open http://localhost:3000 to view the app.
+2. Ensure the Petra browser extension is installed to inject the Aptos API and allow wallet connectivity.
+3. Create or import an Aptos devnet account in Petra to play.
 
-### `yarn test`
+### Technical Implementation
+The app is bootstrapped with Create React App and has main components for:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. App - Aptos Client, Wallet Integration
+2. Game - State Management, Hooks
+3. Board - Display Guesses
+4. Keyboard - Handle Letter Clicks
+5. index.jsx - Core Logic
 
-### `yarn build`
+## Game Flow
+The gameplay flow involves:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Generating a random hidden word on-chain
+Displaying the board to players
+Players click letter buttons to guess
+Submitting transactions for each key press
+Calling contract to verify guess
+Revealing guess results on the board
+Repeating guesses until solved or lost
+To enable this:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+A useState hook manages app state
+useEffect hooks update the board display
+Event handlers capture keyboard clicks
+AptosClient interactions read/write contract state
+Future Goals
+Possible extensions:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Multi-player gameplay
+On-chain persistence of game results
+Custom word lists per player
+Rule variations (number of guesses)
+Display historical game records
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
