@@ -1,0 +1,9 @@
+[package]
+name = "wordle4"
+version = "0.0.0"
+
+[addresses]
+wordle4 = "0x0fc6f90cffc13c8eb5312cfe1ed45f716a59cdfe524deef655bc1fe94408a2d8"
+
+[dependencies]
+AptosFramework = { local = "/Users/ayush/Desktop/aptos/aptos-core/aptos-move/framework/aptos-framework" }
